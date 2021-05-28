@@ -8,3 +8,5 @@ export type Cube = {
   side5: Color;
   side6: Color;
 };
+
+export type Cubes = Array<Cube>;

@@ -21,7 +21,13 @@ const utils_1 = require("./utils");
  */
 const attemptSolution = () => {
     let attemptCount = 0;
-    utils_1.rotateCubes(0, consts_1.INITIAL_CUBES, attemptCount);
+    const solutions = [];
+    const solutionCallback = (solution) => {
+        console.log(`Solution found at iteration ${attemptCount}`);
+        solutions.push(solution);
+    };
+    utils_1.rotateCubes(0, consts_1.INITIAL_CUBES, attemptCount, solutionCallback);
+    console.log(solutions);
 };
 attemptSolution();
 //# sourceMappingURL=index.js.map

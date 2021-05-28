@@ -1,5 +1,6 @@
 import { INITIAL_CUBES } from "./consts";
 import { rotateCubes } from "./utils";
+import { Cubes } from "./types";
 /**
  * basic probably unoptimized algorithm (assuming four cubes):
  *
@@ -20,8 +21,16 @@ import { rotateCubes } from "./utils";
 
 const attemptSolution = () => {
   let attemptCount = 0;
+  const solutions = [];
 
-  rotateCubes(0, INITIAL_CUBES, attemptCount);
+  const solutionCallback = (solution: Cubes) => {
+    console.log(`Solution found at iteration ${attemptCount}`);
+    solutions.push(solution);
+  };
+
+  rotateCubes(0, INITIAL_CUBES, attemptCount, solutionCallback);
+
+  console.log(solutions);
 };
 
 attemptSolution();
