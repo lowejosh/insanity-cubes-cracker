@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const consts_1 = require("./consts");
 const utils_1 = require("./utils");
+const consts_1 = require("./consts");
 /**
  * basic probably unoptimized algorithm (assuming four cubes):
  *

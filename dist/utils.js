@@ -1,31 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.printReadableCube = exports.printSolution = exports.checkSolution = exports.rotateCubes = exports.onAttempt = exports.vertiRotateCube = exports.horizRotateCube = void 0;
+exports.vertiRotateCube = exports.horizRotateCube = exports.printReadableCube = exports.printSolution = exports.checkSolution = exports.rotateCubes = void 0;
 const consts_1 = require("./consts");
-const horizRotateCube = (cube) => {
-    const newCube = Object.assign({}, cube);
-    newCube.side1 = cube.side2;
-    newCube.side2 = cube.side3;
-    newCube.side3 = cube.side4;
-    newCube.side4 = cube.side1;
-    return newCube;
-};
-exports.horizRotateCube = horizRotateCube;
-const vertiRotateCube = (cube) => {
-    const newCube = Object.assign({}, cube);
-    newCube.side1 = cube.side5;
-    newCube.side6 = cube.side1;
-    newCube.side3 = cube.side6;
-    newCube.side5 = cube.side3;
-    return newCube;
-};
-exports.vertiRotateCube = vertiRotateCube;
-const onAttempt = (solved, cubes) => {
-    if (solved) {
-        return cubes;
-    }
-};
-exports.onAttempt = onAttempt;
 const rotateCubes = (cubeIndex, cubes, attemptCount, solutionCallback) => {
     consts_1.ROTATION_ORDER.forEach((orderIndex) => {
         attemptCount++;
@@ -34,13 +10,12 @@ const rotateCubes = (cubeIndex, cubes, attemptCount, solutionCallback) => {
         cubes[cubeIndex] = rotateFunction(cubes[cubeIndex]);
         // check for solution
         const solved = exports.checkSolution(cubes);
-        const solution = exports.onAttempt(solved, cubes);
         // rotate the next cubes if we're not the last one
         if (cubeIndex !== cubes.length - 1) {
             attemptCount = exports.rotateCubes(cubeIndex + 1, cubes, attemptCount, solutionCallback);
         }
-        if (solution) {
-            solutionCallback(solution, attemptCount);
+        if (solved) {
+            solutionCallback(cubes, attemptCount);
         }
     });
     return attemptCount;
@@ -61,4 +36,22 @@ const printSolution = (solution) => solution.forEach((cube, index) => exports.pr
 exports.printSolution = printSolution;
 const printReadableCube = (cube, cubeNumber) => console.log(`Place cube ${cubeNumber} with ${cube.side1} facing you, ${cube.side3} opposite to that, with ${cube.side5} on top and ${cube.side6} on the bottom`);
 exports.printReadableCube = printReadableCube;
+const horizRotateCube = (cube) => {
+    const newCube = Object.assign({}, cube);
+    newCube.side1 = cube.side2;
+    newCube.side2 = cube.side3;
+    newCube.side3 = cube.side4;
+    newCube.side4 = cube.side1;
+    return newCube;
+};
+exports.horizRotateCube = horizRotateCube;
+const vertiRotateCube = (cube) => {
+    const newCube = Object.assign({}, cube);
+    newCube.side1 = cube.side5;
+    newCube.side6 = cube.side1;
+    newCube.side3 = cube.side6;
+    newCube.side5 = cube.side3;
+    return newCube;
+};
+exports.vertiRotateCube = vertiRotateCube;
 //# sourceMappingURL=utils.js.map

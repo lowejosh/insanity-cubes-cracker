@@ -1,5 +1,21 @@
-import { horizRotateCube, vertiRotateCube } from "./utils";
 import { Cube } from "./types";
+export const horizRotateCube = (cube: Cube) => {
+  const newCube = { ...cube };
+  newCube.side1 = cube.side2;
+  newCube.side2 = cube.side3;
+  newCube.side3 = cube.side4;
+  newCube.side4 = cube.side1;
+  return newCube;
+};
+
+export const vertiRotateCube = (cube: Cube) => {
+  const newCube = { ...cube };
+  newCube.side1 = cube.side5;
+  newCube.side6 = cube.side1;
+  newCube.side3 = cube.side6;
+  newCube.side5 = cube.side3;
+  return newCube;
+};
 
 export const COLOR_VALS = {
   red: 1,
