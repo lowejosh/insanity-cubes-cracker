@@ -27,7 +27,6 @@ export const vertiRotateCube = (cube: Cube) => {
 
 export const onAttempt = (solved: boolean, cubes: Cubes) => {
   if (solved) {
-    console.log(solved);
     return cubes;
   }
 };
@@ -36,7 +35,7 @@ export const rotateCubes = (
   cubeIndex: number,
   cubes: Cubes,
   attemptCount: number,
-  solutionCallback: (solution: Cubes) => void
+  solutionCallback: (solution: Cubes, attemptCount: number) => void
 ) => {
   let cube = cubes[cubeIndex];
 
@@ -51,9 +50,6 @@ export const rotateCubes = (
     // check for solution
     const solved = checkSolution(cubes);
     const solution = onAttempt(solved, cubes);
-    if (solution) {
-      solutionCallback(solution);
-    }
 
     // rotate the next cubes if we're not the last one
     if (cubeIndex !== cubes.length - 1) {
@@ -64,8 +60,11 @@ export const rotateCubes = (
         solutionCallback
       );
     }
+
+    if (solution) {
+      solutionCallback(solution, attemptCount);
+    }
   });
-  console.log(attemptCount);
 
   return attemptCount;
 };
@@ -83,3 +82,11 @@ export const checkSolution = (cubes: Cubes) =>
 
     return solvedSides;
   }, 0) === 4;
+
+export const printSolution = (solution: Cubes) =>
+  solution.forEach((cube, index) => printReadableCube(cube, index + 1));
+
+export const printReadableCube = (cube: Cube, cubeNumber: number) =>
+  console.log(
+    `Place cube ${cubeNumber} with ${cube.side1} facing you, ${cube.side3} opposite to that, with ${cube.side5} on top and ${cube.side6} on the bottom`
+  );

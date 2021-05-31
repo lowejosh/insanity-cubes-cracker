@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkSolution = exports.rotateCubes = exports.onAttempt = exports.vertiRotateCube = exports.horizRotateCube = void 0;
+exports.printReadableCube = exports.printSolution = exports.checkSolution = exports.rotateCubes = exports.onAttempt = exports.vertiRotateCube = exports.horizRotateCube = void 0;
 const consts_1 = require("./consts");
 const horizRotateCube = (cube) => {
     const newCube = Object.assign({}, cube);
@@ -22,7 +22,6 @@ const vertiRotateCube = (cube) => {
 exports.vertiRotateCube = vertiRotateCube;
 const onAttempt = (solved, cubes) => {
     if (solved) {
-        console.log(solved);
         return cubes;
     }
 };
@@ -38,12 +37,12 @@ const rotateCubes = (cubeIndex, cubes, attemptCount, solutionCallback) => {
         // check for solution
         const solved = exports.checkSolution(cubes);
         const solution = exports.onAttempt(solved, cubes);
-        if (solution) {
-            solutionCallback(solution);
-        }
         // rotate the next cubes if we're not the last one
         if (cubeIndex !== cubes.length - 1) {
             attemptCount = exports.rotateCubes(cubeIndex + 1, cubes, attemptCount, solutionCallback);
+        }
+        if (solution) {
+            solutionCallback(solution, attemptCount);
         }
     });
     return attemptCount;
@@ -60,4 +59,8 @@ const checkSolution = (cubes) => consts_1.SIDE_INDEXES_CHECKED.reduce((solvedSid
     return solvedSides;
 }, 0) === 4;
 exports.checkSolution = checkSolution;
+const printSolution = (solution) => solution.forEach((cube, index) => exports.printReadableCube(cube, index + 1));
+exports.printSolution = printSolution;
+const printReadableCube = (cube, cubeNumber) => console.log(`Place cube ${cubeNumber} with ${cube.side1} facing you, ${cube.side3} opposite to that, with ${cube.side5} on top and ${cube.side6} on the bottom`);
+exports.printReadableCube = printReadableCube;
 //# sourceMappingURL=utils.js.map
