@@ -1,5 +1,5 @@
-import { INITIAL_CUBES } from "./consts";
 import { printSolution, rotateCubes } from "./utils";
+import { INITIAL_CUBES } from "./consts";
 import { Cubes } from "./types";
 /**
  * basic probably unoptimized algorithm (assuming four cubes):

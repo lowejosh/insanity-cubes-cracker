@@ -1,8 +1,7 @@
-import { Cube } from "../types";
-import { INITIAL_CUBES } from "./../consts";
-import { describe } from "mocha";
-import { expect } from "chai";
 import { horizRotateCube } from "../utils";
+import { describe } from "mocha";
+import { Cube } from "../types";
+import { expect } from "chai";
 
 const mockCube: Cube = {
   side1: "green",

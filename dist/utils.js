@@ -27,13 +27,11 @@ const onAttempt = (solved, cubes) => {
 };
 exports.onAttempt = onAttempt;
 const rotateCubes = (cubeIndex, cubes, attemptCount, solutionCallback) => {
-    let cube = cubes[cubeIndex];
     consts_1.ROTATION_ORDER.forEach((orderIndex) => {
         attemptCount++;
         // rotate once, updating the cube state
         const rotateFunction = consts_1.ROTATION_ORDER_FUNCTIONS[orderIndex];
-        cube = rotateFunction(cube);
-        cubes[cubeIndex] = cube;
+        cubes[cubeIndex] = rotateFunction(cubes[cubeIndex]);
         // check for solution
         const solved = exports.checkSolution(cubes);
         const solution = exports.onAttempt(solved, cubes);

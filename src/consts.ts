@@ -1,5 +1,5 @@
-import { Cube } from "./types";
 import { horizRotateCube, vertiRotateCube } from "./utils";
+import { Cube } from "./types";
 
 export const COLOR_VALS = {
   red: 1,

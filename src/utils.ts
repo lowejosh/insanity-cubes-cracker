@@ -37,15 +37,12 @@ export const rotateCubes = (
   attemptCount: number,
   solutionCallback: (solution: Cubes, attemptCount: number) => void
 ) => {
-  let cube = cubes[cubeIndex];
-
   ROTATION_ORDER.forEach((orderIndex) => {
     attemptCount++;
 
     // rotate once, updating the cube state
     const rotateFunction = ROTATION_ORDER_FUNCTIONS[orderIndex];
-    cube = rotateFunction(cube);
-    cubes[cubeIndex] = cube;
+    cubes[cubeIndex] = rotateFunction(cubes[cubeIndex]);
 
     // check for solution
     const solved = checkSolution(cubes);
