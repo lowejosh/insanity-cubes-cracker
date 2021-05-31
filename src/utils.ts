@@ -1,11 +1,28 @@
 import { Cube, Cubes } from "./types";
 import {
-  ROTATION_ORDER_FUNCTIONS,
   SIDE_INDEXES_CHECKED,
   ROTATION_ORDER,
   EXPECTED_TOTAL,
   COLOR_VALS,
 } from "./consts";
+
+export const horizRotateCube = (cube: Cube) => {
+  const newCube = { ...cube };
+  newCube.side1 = cube.side2;
+  newCube.side2 = cube.side3;
+  newCube.side3 = cube.side4;
+  newCube.side4 = cube.side1;
+  return newCube;
+};
+
+export const vertiRotateCube = (cube: Cube) => {
+  const newCube = { ...cube };
+  newCube.side1 = cube.side5;
+  newCube.side6 = cube.side1;
+  newCube.side3 = cube.side6;
+  newCube.side5 = cube.side3;
+  return newCube;
+};
 
 export const rotateCubes = (
   cubeIndex: number,
@@ -17,7 +34,7 @@ export const rotateCubes = (
     attemptCount++;
 
     // rotate once, updating the cube state
-    const rotateFunction = ROTATION_ORDER_FUNCTIONS[orderIndex];
+    const rotateFunction = [horizRotateCube, vertiRotateCube][orderIndex];
     cubes[cubeIndex] = rotateFunction(cubes[cubeIndex]);
 
     // check for solution
@@ -62,21 +79,3 @@ export const printReadableCube = (cube: Cube, cubeNumber: number) =>
   console.log(
     `Place cube ${cubeNumber} with ${cube.side1} facing you, ${cube.side3} opposite to that, with ${cube.side5} on top and ${cube.side6} on the bottom`
   );
-
-export const horizRotateCube = (cube: Cube) => {
-  const newCube = { ...cube };
-  newCube.side1 = cube.side2;
-  newCube.side2 = cube.side3;
-  newCube.side3 = cube.side4;
-  newCube.side4 = cube.side1;
-  return newCube;
-};
-
-export const vertiRotateCube = (cube: Cube) => {
-  const newCube = { ...cube };
-  newCube.side1 = cube.side5;
-  newCube.side6 = cube.side1;
-  newCube.side3 = cube.side6;
-  newCube.side5 = cube.side3;
-  return newCube;
-};

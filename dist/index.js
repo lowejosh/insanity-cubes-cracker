@@ -5,9 +5,9 @@ const consts_1 = require("./consts");
 /**
  * basic probably unoptimized algorithm (assuming four cubes):
  *
- * the correct solution has all sides number mapped values summing to 10
+ * the correct solution has all sides number mapped values summing to 15
  *
- * so... just brute force through every possible combination until we have all sides mapped to 10
+ * so... just brute force through every possible combination until we have all sides mapped to 15
  *
  * a cube rotation iteration can be defined as rotating a cube through every side, starting with the intial state:
  *      1: rotate 90 degrees sideways three times,
@@ -26,7 +26,7 @@ const attemptSolution = () => {
         utils_1.printSolution(solution);
         solutions.push(solution);
     };
-    utils_1.rotateCubes(0, consts_1.INITIAL_CUBES, 0, solutionCallback);
+    utils_1.rotateCubes(0, consts_1.INITIAL_CUBES, solutionCallback);
 };
 attemptSolution();
 //# sourceMappingURL=index.js.map
