@@ -20,7 +20,6 @@ import { Cubes } from "./types";
  */
 
 const attemptSolution = () => {
-  let attemptCount = 0;
   const solutions = [];
 
   const solutionCallback = (solution: Cubes, attemptCount: number) => {
@@ -29,7 +28,7 @@ const attemptSolution = () => {
     solutions.push(solution);
   };
 
-  rotateCubes(0, INITIAL_CUBES, attemptCount, solutionCallback);
+  rotateCubes(0, INITIAL_CUBES, 0, solutionCallback);
 };
 
 attemptSolution();

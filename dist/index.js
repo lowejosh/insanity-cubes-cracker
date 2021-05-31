@@ -20,14 +20,13 @@ const utils_1 = require("./utils");
  * possible states are checked. There should only be 16^4 solutions so this should be fine without optimization.
  */
 const attemptSolution = () => {
-    let attemptCount = 0;
     const solutions = [];
     const solutionCallback = (solution, attemptCount) => {
         console.log(`\nSolution found at iteration ${attemptCount}`);
         utils_1.printSolution(solution);
         solutions.push(solution);
     };
-    utils_1.rotateCubes(0, consts_1.INITIAL_CUBES, attemptCount, solutionCallback);
+    utils_1.rotateCubes(0, consts_1.INITIAL_CUBES, 0, solutionCallback);
 };
 attemptSolution();
 //# sourceMappingURL=index.js.map
