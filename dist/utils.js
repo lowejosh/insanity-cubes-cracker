@@ -20,22 +20,24 @@ const vertiRotateCube = (cube) => {
     return newCube;
 };
 exports.vertiRotateCube = vertiRotateCube;
-const rotateCubes = (cubeIndex, cubes, solutionCallback) => consts_1.ROTATION_ORDER.reduce((attemptCount, orderIndex) => {
-    attemptCount++;
-    // rotate once, updating the cube state
-    const rotateFunction = [exports.horizRotateCube, exports.vertiRotateCube][orderIndex];
-    cubes[cubeIndex] = rotateFunction(cubes[cubeIndex]);
-    // check for solution
-    const solved = exports.checkSolution(cubes);
-    // rotate the next cubes if we're not the last one
-    if (cubeIndex !== cubes.length - 1) {
-        attemptCount = exports.rotateCubes(cubeIndex + 1, cubes, solutionCallback);
-    }
-    if (solved) {
-        solutionCallback(cubes, attemptCount);
-    }
+const rotateCubes = (cubeIndex, cubes, attemptCount, solutionCallback) => {
+    consts_1.ROTATION_ORDER.forEach((orderIndex) => {
+        attemptCount++;
+        // rotate once, updating the cube state
+        const rotateFunction = [exports.horizRotateCube, exports.vertiRotateCube][orderIndex];
+        cubes[cubeIndex] = rotateFunction(cubes[cubeIndex]);
+        // check for solution
+        const solved = exports.checkSolution(cubes);
+        // rotate the next cubes if we're not the last one
+        if (cubeIndex !== cubes.length - 1) {
+            attemptCount = exports.rotateCubes(cubeIndex + 1, cubes, attemptCount, solutionCallback);
+        }
+        if (solved) {
+            solutionCallback(cubes, attemptCount);
+        }
+    });
     return attemptCount;
-}, 0);
+};
 exports.rotateCubes = rotateCubes;
 const checkSolution = (cubes) => consts_1.SIDE_INDEXES_CHECKED.reduce((solvedSides, sideIndex) => {
     const total = cubes.reduce((total, cube) => {

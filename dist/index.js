@@ -26,7 +26,7 @@ const attemptSolution = () => {
         utils_1.printSolution(solution);
         solutions.push(solution);
     };
-    utils_1.rotateCubes(0, consts_1.INITIAL_CUBES, solutionCallback);
+    utils_1.rotateCubes(0, consts_1.INITIAL_CUBES, 0, solutionCallback);
 };
 attemptSolution();
 //# sourceMappingURL=index.js.map

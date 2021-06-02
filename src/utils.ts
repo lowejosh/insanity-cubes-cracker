@@ -8,19 +8,19 @@ import {
 
 export const horizRotateCube = (cube: Cube) => {
   const newCube = { ...cube };
-  newCube.side1 = cube.side2;
-  newCube.side2 = cube.side3;
-  newCube.side3 = cube.side4;
-  newCube.side4 = cube.side1;
+  newCube.front = cube.right;
+  newCube.right = cube.back;
+  newCube.back = cube.left;
+  newCube.left = cube.front;
   return newCube;
 };
 
 export const vertiRotateCube = (cube: Cube) => {
   const newCube = { ...cube };
-  newCube.side1 = cube.side5;
-  newCube.side6 = cube.side1;
-  newCube.side3 = cube.side6;
-  newCube.side5 = cube.side3;
+  newCube.front = cube.top;
+  newCube.bottom = cube.front;
+  newCube.back = cube.bottom;
+  newCube.top = cube.back;
   return newCube;
 };
 
@@ -77,5 +77,5 @@ export const printSolution = (solution: Cubes) =>
 
 export const printReadableCube = (cube: Cube, cubeNumber: number) =>
   console.log(
-    `Place cube ${cubeNumber} with ${cube.side1} facing you, ${cube.side3} opposite to that, with ${cube.side5} on top and ${cube.side6} on the bottom`
+    `Place cube ${cubeNumber} with ${cube.front} facing you, ${cube.back} opposite to that, with ${cube.top} on top and ${cube.bottom} on the bottom`
   );
