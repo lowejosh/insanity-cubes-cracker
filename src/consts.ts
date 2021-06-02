@@ -1,4 +1,3 @@
-import { horizRotateCube, vertiRotateCube } from "./utils";
 import { Cube } from "./types";
 
 export const COLOR_VALS = {
@@ -13,41 +12,41 @@ export const EXPECTED_TOTAL = Object.keys(COLOR_VALS).reduce(
   0
 );
 
-export const SIDE_INDEXES_CHECKED = ["side1", "side3", "side5", "side6"];
+export const SIDE_INDEXES_CHECKED = ["front", "back", "top", "bottom"];
 
 export const ROTATION_ORDER = "0 0 0 1 0 0 0 1 0 0 0 1 0 0 0".split(" ");
 
 export const INITIAL_CUBES: Array<Cube> = [
   {
-    side1: "green",
-    side2: "red",
-    side3: "green",
-    side4: "blue",
-    side5: "blue",
-    side6: "yellow",
+    front: "green",
+    right: "red",
+    back: "green",
+    left: "blue",
+    top: "blue",
+    bottom: "yellow",
   },
   {
-    side1: "red",
-    side2: "blue",
-    side3: "green",
-    side4: "yellow",
-    side5: "yellow",
-    side6: "green",
+    front: "red",
+    right: "blue",
+    back: "green",
+    left: "yellow",
+    top: "yellow",
+    bottom: "green",
   },
   {
-    side1: "red",
-    side2: "yellow",
-    side3: "blue",
-    side4: "green",
-    side5: "red",
-    side6: "yellow",
+    front: "red",
+    right: "yellow",
+    back: "blue",
+    left: "green",
+    top: "red",
+    bottom: "yellow",
   },
   {
-    side1: "blue",
-    side2: "red",
-    side3: "yellow",
-    side4: "green",
-    side5: "red",
-    side6: "red",
+    front: "blue",
+    right: "red",
+    back: "yellow",
+    left: "green",
+    top: "red",
+    bottom: "red",
   },
 ];
